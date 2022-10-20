@@ -26,6 +26,7 @@ declare global {
   }
 }
 
+console.log('notifying that the page is loading.');
 // @ts-expect-error: external cannot be declared since it's readonly from TS.
 window.external?.notify?.('pageLoaded');
 navigator.gamepadInputEmulation = 'keyboard';
