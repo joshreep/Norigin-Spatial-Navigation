@@ -435,7 +435,7 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   useEffect(() => {
     // @ts-expect-error: external cannot be declared since it's readonly from TS.
-    window.external.notify('pageLoaded');
+    if ('notify' in window.external) window.external.notify('pageLoaded');
     navigator.gamepadInputEmulation = 'keyboard';
   }, []);
 
