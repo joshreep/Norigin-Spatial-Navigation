@@ -18,13 +18,17 @@ import {
   KeyPressDetails
 } from './index';
 
+const logo = require('../logo.png').default;
+
 declare global {
   interface Navigator {
     gamepadInputEmulation?: 'mouse' | 'keyboard' | 'gamepad';
   }
 }
 
-const logo = require('../logo.png').default;
+// @ts-expect-error: external cannot be declared since it's readonly from TS.
+window.external?.notify?.('pageLoaded');
+navigator.gamepadInputEmulation = 'keyboard';
 
 init({
   debug: false,
@@ -390,7 +394,7 @@ function Content() {
   return (
     <FocusContext.Provider value={focusKey}>
       <ContentWrapper>
-        <ContentTitle>Norigin Spatial Navigation!!!</ContentTitle>
+        <ContentTitle>Norigin Spatial Navigation?</ContentTitle>
         <SelectedItemWrapper>
           <SelectedItemBox
             color={selectedAsset ? selectedAsset.color : '#565b6b'}
@@ -433,12 +437,6 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-  useEffect(() => {
-    // @ts-expect-error: external cannot be declared since it's readonly from TS.
-    window.external?.notify?.('pageLoaded');
-    navigator.gamepadInputEmulation = 'keyboard';
-  }, []);
-
   return (
     <React.StrictMode>
       <AppContainer>
