@@ -18,6 +18,12 @@ import {
   KeyPressDetails
 } from './index';
 
+declare global {
+  interface Navigator {
+    gamepadInputEmulation?: 'mouse' | 'keyboard' | 'gamepad';
+  }
+}
+
 const logo = require('../logo.png').default;
 
 init({
@@ -427,6 +433,12 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+  useEffect(() => {
+    // @ts-expect-error: external cannot be declared since it's readonly from TS.
+    window.external.notify('pageLoaded');
+    navigator.gamepadInputEmulation = 'keyboard';
+  }, []);
+
   return (
     <React.StrictMode>
       <AppContainer>
