@@ -420,8 +420,8 @@ function Content() {
 
 const AppContainer = styled.div`
   background-color: #221c35;
-  width: 1440px;
-  height: 810px;
+  width: 1920px;
+  height: 1080px;
   display: flex;
   flex-direction: row;
 `;
@@ -435,7 +435,7 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   useEffect(() => {
     const handlePageLoad = () => {
-      console.log('notifying that the page is loading.');
+      console.log('notifying that the page is loaded.');
       // @ts-expect-error: external cannot be declared since it's readonly from TS.
       window.external.notify('pageLoaded');
       navigator.gamepadInputEmulation = 'keyboard';
