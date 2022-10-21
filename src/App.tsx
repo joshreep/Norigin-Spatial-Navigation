@@ -396,7 +396,7 @@ function Content() {
   return (
     <FocusContext.Provider value={focusKey}>
       <ContentWrapper>
-        <ContentTitle>Norigin Spatial Navigation?!1</ContentTitle>
+        <ContentTitle>Norigin Spatial Navigation?! 2</ContentTitle>
         <SelectedItemWrapper>
           <SelectedItemBox
             color={selectedAsset ? selectedAsset.color : '#565b6b'}
