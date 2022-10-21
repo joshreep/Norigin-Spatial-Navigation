@@ -26,12 +26,6 @@ declare global {
   }
 }
 
-console.log('notifying that the page is loading.');
-debugger;
-// @ts-expect-error: external cannot be declared since it's readonly from TS.
-window.external?.notify?.('pageLoaded');
-navigator.gamepadInputEmulation = 'keyboard';
-
 init({
   debug: false,
   visualDebug: false
@@ -396,7 +390,7 @@ function Content() {
   return (
     <FocusContext.Provider value={focusKey}>
       <ContentWrapper>
-        <ContentTitle>Norigin Spatial Navigation?! 2</ContentTitle>
+        <ContentTitle>Norigin Spatial Navigation?! 3</ContentTitle>
         <SelectedItemWrapper>
           <SelectedItemBox
             color={selectedAsset ? selectedAsset.color : '#565b6b'}
@@ -439,6 +433,20 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+  useEffect(() => {
+    const handlePageLoad = () => {
+      console.log('notifying that the page is loading.');
+      // @ts-expect-error: external cannot be declared since it's readonly from TS.
+      window.external.notify('pageLoaded');
+      navigator.gamepadInputEmulation = 'keyboard';
+    };
+
+    window.addEventListener('load', handlePageLoad);
+
+    return () => {
+      window.removeEventListener('load', handlePageLoad);
+    };
+  }, []);
   return (
     <React.StrictMode>
       <AppContainer>
