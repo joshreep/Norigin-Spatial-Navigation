@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'production',
+  devtool: 'source-map',
   target: 'web',
   entry: './src/App.tsx',
   module: {
